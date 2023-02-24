@@ -121,3 +121,18 @@ test("List Object", async () => {
     expect(data).toContain("100");
     expect(data).toContain("95");
 });
+
+test("Functions", async () => {
+    const parameter = {
+        name: "Eko",
+        upper: () => {
+            return (text, render) => {
+                return render(text).toUpperCase();
+            }
+        }
+    }
+
+    const data = Mustache.render("Hello {{#upper}}{{name}}{{/upper}}", parameter);
+    console.info(data);
+    expect(data).toBe("Hello EKO");
+});
