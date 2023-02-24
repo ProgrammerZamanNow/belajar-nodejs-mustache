@@ -82,3 +82,12 @@ test("Sections Data", async () => {
     console.info(data);
     expect(data).toContain("Hello Person Eko!");
 });
+
+test("Inverted Sections", async () => {
+    const helloTemplate = await fs.readFile("./templates/person.mustache")
+        .then(data => data.toString());
+
+    const data = Mustache.render(helloTemplate, {});
+    console.info(data);
+    expect(data).toContain("Hello Guest");
+});
