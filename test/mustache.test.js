@@ -68,3 +68,17 @@ test("Mustache Sections Show", async () => {
     console.info(data);
     expect(data).toContain("Hello Person");
 });
+
+
+test("Sections Data", async () => {
+    const helloTemplate = await fs.readFile("./templates/person.mustache")
+        .then(data => data.toString());
+
+    const data = Mustache.render(helloTemplate, {
+        person: {
+            name: "Eko"
+        }
+    });
+    console.info(data);
+    expect(data).toContain("Hello Person Eko!");
+});
