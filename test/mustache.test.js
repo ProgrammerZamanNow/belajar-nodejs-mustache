@@ -46,3 +46,25 @@ test("Mustache File", async () => {
     console.info(data);
     expect(data).toContain("Programmer Zaman Now");
 });
+
+test("Mustache Sections Not Show", async () => {
+    const helloTemplate = await fs.readFile("./templates/person.mustache")
+        .then(data => data.toString());
+
+    const data = Mustache.render(helloTemplate, {});
+    console.info(data);
+    expect(data).not.toContain("Hello Person");
+});
+
+test("Mustache Sections Show", async () => {
+    const helloTemplate = await fs.readFile("./templates/person.mustache")
+        .then(data => data.toString());
+
+    const data = Mustache.render(helloTemplate, {
+        person: {
+            name: "Eko"
+        }
+    });
+    console.info(data);
+    expect(data).toContain("Hello Person");
+});
